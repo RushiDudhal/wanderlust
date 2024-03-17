@@ -24,7 +24,7 @@ const MongoStore = require('connect-mongo');
 
 
 const dbUrl=process.env.ATLASDB_URL;
-//const MONGO_URL ="mongodb://127.0.0.1:27017/wanderlust";
+// const dbUrl ="mongodb://127.0.0.1:27017/wanderlust";
 
 main()
     .then(()=>{
@@ -38,7 +38,7 @@ async function main() {
 const store=MongoStore.create({
     mongoUrl:dbUrl,
     crypto:{
-        secret: process.env.Secret,
+        secret: process.env.SECRET,
     },
     touchAfter:24*3600,
 })
@@ -48,7 +48,7 @@ store.on("error",(err)=>{
 })
 
 const sessionOptions = {
-    secret: process.env.Secret,
+    secret: process.env.SECRET,
     store:store,
     resave: false,
     saveUninitialized: true,
